@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Documentazione progetto arkanoid</title>
+    <!-- Favicon-->
+   
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="src/styles-index.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Page content-->
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-lg-8">
+          <!-- Post content-->
+          <article>
+            <!-- Post header-->
+            <header class="mb-4">
+              <!-- Post title-->
+              <h1 class="fw-bolder mb-1">Arkanoid</h1>
+              <!-- Post meta content-->
+              <div class="text-muted fst-italic mb-2">
+                Alessandro Bsoul - Lorenzo Grenci - Tiziano Gallo
+              </div>
+              <!-- Post categories-->
+              <a
+                class="badge bg-secondary text-decoration-none link-light"
+                href="#!"
+                >IV Binf</a
+              >
+              <a
+                class="badge bg-secondary text-decoration-none link-light"
+                href="#!"
+                >2022-2023</a
+              >
+            </header>
+            <!-- Preview image figure-->
+            <figure class="mb-4">
+              <img
+                class="img-fluid rounded"
+                src="src/schermata.png"
+                alt="..."
+              />
+            </figure>
+            <!-- Post content-->
+            <section class="mb-5">
+              <div class="card bg-light">
+                <div class="card-body">
+                <h2 class="fw-bolder mb-4 mt-5">Documentazione di progetto</h2>
+                <h4><b>MOVIMENTO DELLA RACCHETTA</b></h4>
+                <p class="fs-5 mb-4">
+                  La racchetta segue sempre il movimento del mouse, tranne se si trova al di fuori dell'area di gioco, e quindi la racchetta manterrà l'ultima posizione assunta.
+                </p>  
+                  <h4><b>VITTORIA</b></h4>
+                  <p class="fs-5 mb-4">
+                      Quando vengono distrutti tutti i mattoncini, si vince e viene visualizzata la schermata di vittoria poi si passa allo schema di mattoncini successivo.
+                    <div class="row">
+                        <div class="col-3">
+                          <figure class="mb-4">
+                            <img id="vittoria"
+                              class="rounded"
+                              src="src/vittoria.png"
+                            />
+                            <figcaption class="figure-caption">
+                                schermata di vittoria
+                            </figcaption>
+                          </figure>
+                      </div>
+                    </p>
+                    <h4><b>SCONFITTA</b></h4>
+                  <p class="fs-5 mb-4">
+                      Quando la pallina va sotto la racchetta e tocca l'asse orizzontale, la partita finisce e viene fisualizzata la schermata di Game Over.
+                      Al riavvio della nuova partita il livello non cambia cos' da lasciare all'utente la scelta di completare lo schema prima di passare a  quello successivo.
+                    <div class="row">
+                        <div class="col-3">
+                          <figure class="mb-4">
+                            <img id="sconfitta"
+                              class="rounded"
+                              src="src/sconfitta.png"
+                            />
+                            <figcaption class="figure-caption">
+                                schermata di sconfitta
+                            </figcaption>
+                          </figure>
+                      </div>
+                    </p> 
+                    <h4><b>MOVIMENTO PALLINA</b></h4>
+                    <p class="fs-5 mb-4">
+                    La velocità del movimento della pallina è incrementale, più mattoncini vengono distrutti, più aumenta la velocità
+                    </p>
+                    <h4><b>LIVELLI</b></h4>
+                    <p class="fs-5 mb-4">
+                    Il gioco prevede quattro diversi schemi di mattoncini a scelta dell'utente:
+                    <div class="row">
+                        <div class="col-3">
+                          <figure class="mb-4">
+                            <img id="lvls"
+                              class="rounded"
+                              src="src/lvls.png"
+                            />
+                          </figure>
+                      </div>
+                    </p>
+                    <h4><b>HALL OF FAME</b></h4>
+                    <p class="fs-5 mb-4">
+                    Il giocatore all'inizio della partita, deve inserire un nome di al massimo 5 caratteri per evitare di sovrapporre le scritte e che contenga delle lettere.
+                    Alla fine di ogni partita, viene aggiornata la hall of fame e viene visualizzato il nome dei primi 5 migliori giocatori con il loro punteggio.
+                    <div class="row">
+                        <div class="col-3">
+                          <figure class="mb-4">
+                            <img id="hall_of_fame"
+                              class="rounded"
+                              src="src/hall_of_fame.png"
+                            />
+                          </figure>
+                      </div>
+                    </p>
+              </div>
+
+              </div>
+            </section>
+          </article>
+          <!-- Comments section-->
+          <section class="mb-5">
+            <div class="card bg-light">
+              <div class="card-body">
+                <h3 class="fw-bolder mb-4 mt-5">
+                  Documentazione tecnica di progetto
+                </h3>
+                <h3 class="fw-bolder mb-4 mt-5">
+                    Inizio del gioco
+                </h3>
+                <p class="fs-5 mb-4">
+                  I canvas non vengnono caricati subito nella pagina, quindi è necessario creare una funzione che attenda che vengano caricati per poi poter accedere alle sue risorse: 
+                  <br>
+                  <br>
+                  <code> 
+                      if (!canvas_game && !canvas_score && !canvas_hall_of_fame) {
+                        setTimeout(wait_canvas, 100);
+                  </code><br><br>
+                    così facendo, il programma attende che i canvas vengano creati, pooi viene chiamata la funzione <code>inizio()</code> che appena l'utente inserisce uno username, avvia il gioco.
+                    Viene caricato il livello tramite una lista che contiene tutte le funzioni per disegnare gli schemi: <code>schemi[nSchema]()</code> e tramite la funzione <code>request(urlGet, body, (result) => {}</code> viene presa la hall of fame e caricata nella pagina <code>draw_hall_of_fame()</code>
+                </p>
+                <h3 class="fw-bolder mb-4 mt-5">
+                    Movimento della racchetta
+                </h3>
+                <p class="fs-5 mb-4">
+                  La racchetta si muove seguendo le coordinate del mouse, quindi e necessario creare un evento per poter tracciare il mouse <code>canvas_game.addEventListener("mousemove", function (event) {})</code>
+                </p>
+                <h3 class="fw-bolder mb-4 mt-5">
+                    Aggiornamento della pagina
+                </h3>
+                <p class="fs-5 mb-4">
+                  La funzione <code>render()</code>  ha il compito di aggiornare il punteggio del giocatore e le nuove coordinate della racchetta e della pallina, ridisegnare lo schema di mattoncini togliendo i mattoncini distrutti <code>ridisegna_mattoncini()</code> e controllare se l'utente ha vinto o perso e chiamare le relative funzioni <code>gameOver()</code>, <code>victory()</code> e in entrambi i casi <code>restart()</code>  per settare le variabili al valore iniziale per poter riniziare la partita e <code>save_hall_of_fame(hall_of_fame)</code> per salvare la hall of fame.
+                </p>
+                
+                <h3 class="fw-bolder mb-4 mt-5">
+                    Livelli
+                </h3>
+                <p class="fs-5 mb-4">
+                  Il gioco prevede 4 livelli totali ed ognuno di loro è disegnato tramite un'apposita funzione: <code>schema1()</code>, <code>schema2()</code>, <code>schema3()</code>, <code>schema4()</code>            
+                  L'utente ha anche la possibilità di cambiare il livello tramite un bottone posto sopra l'area di gioco, è quindi necessario tenere traccia di quando il bottone viene premuto per cambiare il livello: <code>change.onclick = () => {}</code> e una volta che la partita è iniziata il bottone è disabilitato: <code>change.disabled = true </code> 
+                </p>
+              </div>
+              
+            </div>
+          </section>
+        </div>
+        <!-- Side widgets-->
+        <div class="col-lg-4">
+          <div class="card mb-4">
+            <div class="card-header">Descrizione breve</div>
+            <div class="card-body">
+              Questo progetto è basato su un gioco già esistente: arkanoid.
+              Inizialmente la pallina e la racchetta virtuale vengono generate
+              centrate, in basso all'area di gioco. Per poter iniziare a
+              giocare è obbligatorio inserire il prorio username ed il mouse
+              deve passare vicino alla racchetta; se non viene inserito il
+              proprio username, il bordo del campo input rimarrà di colore rosso
+              fino a quando non ne verrà inserito uno valido(inserire uno
+              username che sia di un massimo di 5 caratteri per evitare di sovrapporre 
+              le scritte e che contenga delle lettere). 
+              La velocità della pallina è progressiva, aumenta man mano che si 
+              distruggono i mattoncini.<br />
+              La schermata è divista in 4 parti:
+              <ul>
+                <li>Scelta dell'utente</li>
+                <li>Area di gioco</li>
+                <li>Punteggio</li>
+                <li>Hall of fame</li>
+              </ul>
+              Nell'area della scelta dell'utente, oltre all'inserimento dello
+              username c'è anche la possibilità di cambiare lo schema dei
+              mattoncini. Per vincere bisogna distruggere tutti e 36 i
+              mattoncini e successivamente verrà caricato un nuovo schema di
+              mattoncini, mentre si perde se la pallina va al di sotto della
+              racchetta e verrà caricato lo stesso schema di mattoncini in modo
+              da dare la possibilità di completare il livello; in entrambi i
+              casi verrà visualizzata la vittoria o la sconfitta a schermo
+              intero.
+            </div>
+          </div>
+
+          <!-- Side widget-->
+          <div class="card mb-4">
+            <div class="card-header">Link al progetto</div>
+            <div class="card-body"><a href="play.html">progetto</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+  </body>
+</html>

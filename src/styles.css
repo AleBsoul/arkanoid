@@ -1,0 +1,49 @@
+body {
+  height: 100%;
+  width: 100%;
+  font-family: sans-serif;
+  background-image: url(src/sfondo.png);
+  opacity: 50;
+}
+canvas {
+  border: 3px solid black;
+}
+#canvas_game {
+  border-radius: 8px;
+  background-image: linear-gradient(
+    to top right,
+    #ae7ccf 0%,
+    rgb(158, 51, 182) 50%,
+    rgb(93, 17, 151) 100%
+  );
+}
+
+#combo_div {
+  height: 100px;
+  color: black;
+  font-size: 60px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#canvas_score,
+#canvas_hall_of_fame {
+  border-radius: 20px;
+  background-image: linear-gradient(
+    to top right,
+    #0c22e9 0%,
+    rgb(101, 32, 167) 50%,
+    rgb(136, 28, 218) 100%
+  );
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+#button {
+  background-color: #6f24ac;
+  border: #6f24ac;
+}
